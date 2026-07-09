@@ -1,0 +1,263 @@
+# PRISTINE TEMPLATE BEBAS ERROR
+
+# ========================================================
+# 1. PENGATURAN WAKTU (TIMELINE SEQUENCE)
+# ========================================================
+# Membagi simulasi menjadi 21 sesi berurutan (0.0s, 1.0s, 2.0s, 3.0s, 4.0s 5.0s 6.0s 7.0s 8.0s 9.0s 10.0s)
+d:Tf/TimelineStart = 0.0 s
+d:Tf/TimelineEnd   = 35.0 s
+i:Tf/NumberOfSequentialTimes = 35
+
+# ========================================================
+# 2. TIME FEATURES (FITUR PERUBAHAN WAKTU)
+# ========================================================
+# A. Fitur Penurunan Energi
+s:Tf/LapisanEnergi/Function = "Step"
+# Angka waktu digeser menjadi batas akhir (1.0, 2.0, dst)
+dv:Tf/LapisanEnergi/Times   = 35 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25 26 27 28 29 30 31 32 33 34 35 s
+dv:Tf/LapisanEnergi/Values = 35 150.000000
+149.044962
+148.396135
+147.745115
+147.091879
+146.436402
+145.778657
+145.118620
+144.456263
+143.791559
+143.124480
+142.454999
+141.783086
+141.108713
+140.431848
+139.752463
+139.070524
+138.386001
+137.698861
+137.009070
+136.316595
+135.621400
+134.923451
+134.222710
+133.519141
+132.812706
+132.103365
+131.391080
+130.675808
+129.957510
+129.236141
+128.511658
+127.784016
+127.053170
+126.319073 MeV
+
+# B. Fitur Penurunan Jumlah Partikel (Bobot)
+s:Tf/BobotPartikel/Function = "Step"
+dv:Tf/BobotPartikel/Times   = 35 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 22.0 23.0 24.0 25 26 27 28 29 30 31 32 33 34 35 s
+iv:Tf/BobotPartikel/Values  = 35       57513
+  60906
+  63200
+  67033
+  70628
+  76366
+  83636
+  92780
+ 100000
+  91503
+  61758
+  38565
+  42629
+  47547
+  39140
+  34476
+  35848
+  33218
+  30973
+  31060
+  29138
+  26724
+  27514
+  26829
+  23988
+  24537
+  24873
+  20585
+  22054
+  25886
+  17762
+   5583
+    574
+      0
+      0
+   
+s:So/PBS/Type                   = "Beam"
+s:So/PBS/Component              = "BeamPosition"
+s:So/PBS/BeamParticle           = "proton"
+
+d:So/PBS/BeamEnergy             = Tf/LapisanEnergi/Value MeV
+i:So/PBS/NumberOfHistoriesInRun = Tf/BobotPartikel/Value
+
+# Karakteristik geometri berkas pensil
+s:So/PBS/BeamPositionCutoffShape  = "Ellipse"
+s:So/PBS/BeamPositionDistribution = "Flat"
+d:So/PBS/BeamPositionCutoffX      = 2 mm
+d:So/PBS/BeamPositionCutoffY      = 2 mm
+d:So/PBS/BeamPositionSpreadX      = 3.0 mm
+d:So/PBS/BeamPositionSpreadY      = 3.0 mm
+s:So/PBS/BeamAngularDistribution  = "None"
+d:So/PBS/BeamAngularCutoffX       = 90. deg
+d:So/PBS/BeamAngularCutoffY       = 90. deg
+d:So/PBS/BeamAngularSpreadX       = 0.425 mrad
+d:So/PBS/BeamAngularSpreadY       = 0.425 mrad
+
+# Geometri Beam
+s:Ge/BeamPosition/Parent   = "World"
+s:Ge/BeamPosition/Type     = "Group"
+d:Ge/BeamPosition/TransX   = 0. mm
+d:Ge/BeamPosition/TransY   = 0. mm
+d:Ge/BeamPosition/TransZ   = -5 cm 
+d:Ge/BeamPosition/RotX     = 0. deg
+d:Ge/BeamPosition/RotY     = 0. deg
+d:Ge/BeamPosition/RotZ     = 0. deg
+
+# Apparatus (Dunia)
+d:Ge/World/HLX       = 220 cm
+d:Ge/World/HLY       = 220 cm
+d:Ge/World/HLZ       = 400 cm
+b:Ge/World/Invisible = "TRUE"
+s:Ge/World/Material  = "Air"
+
+# Phantom
+s:Ge/Phantom/Parent = "World"
+s:Ge/Phantom/Type   = "Group"
+d:Ge/Phantom/TransX = 0. mm
+d:Ge/Phantom/TransY = 0. mm
+d:Ge/Phantom/TransZ = 0. mm
+d:Ge/Phantom/RotX   = 0. deg
+d:Ge/Phantom/RotY   = 0. deg
+d:Ge/Phantom/RotZ   = 0. deg
+
+s:Ge/Phantom1/Parent = "Phantom"
+s:Ge/Phantom2/Parent = "Phantom"
+s:Ge/Phantom3/Parent = "Phantom"
+s:Ge/Phantom4/Parent = "Phantom"
+s:Ge/Phantom5/Parent = "Phantom"
+
+s:Ge/Phantom1/Type     = "TsBox"
+s:Ge/Phantom1/Material = "G4_PLEXIGLASS"
+d:Ge/Phantom1/HLX      = 150.0 mm
+d:Ge/Phantom1/HLY      = 150.0 mm
+d:Ge/Phantom1/HLZ      = 5.0 mm
+i:Ge/Phantom1/ZBins    = 10
+d:Ge/Phantom1/TransX   = 0. mm
+d:Ge/Phantom1/TransY   = 0. mm
+d:Ge/Phantom1/TransZ   = 5. mm
+d:Ge/Phantom1/RotX     = 0. deg
+d:Ge/Phantom1/RotY     = 0. deg
+d:Ge/Phantom1/RotZ     = 0. deg
+
+s:Ge/Phantom2/Type     = "TsBox"
+s:Ge/Phantom2/Material = "G4_WATER"
+d:Ge/Phantom2/HLX      = 150.0 mm
+d:Ge/Phantom2/HLY      = 150.0 mm
+d:Ge/Phantom2/HLZ      = 8.5 mm
+i:Ge/Phantom2/ZBins    = 17
+d:Ge/Phantom2/TransX   = 0. mm
+d:Ge/Phantom2/TransY   = 0. mm
+d:Ge/Phantom2/TransZ   = 18.5 mm
+d:Ge/Phantom2/RotX     = 0. deg
+d:Ge/Phantom2/RotY     = 0. deg
+d:Ge/Phantom2/RotZ     = 0. deg
+
+s:Ge/Phantom3/Type     = "TsBox"
+s:Ge/Phantom3/Material = "G4_PLEXIGLASS"
+d:Ge/Phantom3/HLX      = 150.0 mm
+d:Ge/Phantom3/HLY      = 150.0 mm
+d:Ge/Phantom3/HLZ      = 40.0 mm
+i:Ge/Phantom3/ZBins    = 80
+d:Ge/Phantom3/TransX   = 0. mm
+d:Ge/Phantom3/TransY   = 0. mm
+d:Ge/Phantom3/TransZ   = 67.0 mm
+d:Ge/Phantom3/RotX     = 0. deg
+d:Ge/Phantom3/RotY     = 0. deg
+d:Ge/Phantom3/RotZ     = 0. deg
+
+s:Ge/Phantom4/Type     = "TsBox"
+s:Ge/Phantom4/Material = "G4_WATER"
+d:Ge/Phantom4/HLX      = 150.0 mm
+d:Ge/Phantom4/HLY      = 150.0 mm
+d:Ge/Phantom4/HLZ      = 17.0 mm
+i:Ge/Phantom4/ZBins    = 34
+d:Ge/Phantom4/TransX   = 0. mm
+d:Ge/Phantom4/TransY   = 0. mm
+d:Ge/Phantom4/TransZ   = 124.0 mm
+d:Ge/Phantom4/RotX     = 0. deg
+d:Ge/Phantom4/RotY     = 0. deg
+d:Ge/Phantom4/RotZ     = 0. deg
+
+s:Ge/Phantom5/Type     = "TsBox"
+s:Ge/Phantom5/Material = "G4_PLEXIGLASS"
+d:Ge/Phantom5/HLX      = 150.0 mm
+d:Ge/Phantom5/HLY      = 150.0 mm
+d:Ge/Phantom5/HLZ      = 79.5 mm
+i:Ge/Phantom5/ZBins    = 159
+d:Ge/Phantom5/TransX   = 0. mm
+d:Ge/Phantom5/TransY   = 0. mm
+d:Ge/Phantom5/TransZ   = 220.5 mm
+d:Ge/Phantom5/RotX     = 0. deg
+d:Ge/Phantom5/RotY     = 0. deg
+d:Ge/Phantom5/RotZ     = 0. deg
+
+
+# Modul Fisika
+sv:Ph/Default/Modules = 8 "g4em-standard_opt4" "g4h-phy_QGSP_BIC_HP" "g4em-extra" "g4h-elastic_HP" "g4stopping" "g4ion-binarycascade" "g4decay" "g4radioactivedecay"
+s:Ts/G4DataDirectory = "/home/nata/G4Data"
+
+# Scorer
+# Scorer untuk Phantom 1
+s:Sc/DosePhantom1/Quantity   = "DoseToMedium"
+s:Sc/DosePhantom1/Component  = "Phantom1"
+s:Sc/DosePhantom1/OutputFile = "Dose_Phantom1"
+s:Sc/DosePhantom1/OutputType = "csv"
+s:Sc/DosePhantom1/IfOutputFileAlreadyExists = "Overwrite" 
+b:Sc/DosePhantom1/OutputToConsole = "TRUE"
+
+# Scorer untuk Phantom 2
+s:Sc/DosePhantom2/Quantity   = "DoseToMedium"
+s:Sc/DosePhantom2/Component  = "Phantom2"
+s:Sc/DosePhantom2/OutputFile = "Dose_Phantom2"
+s:Sc/DosePhantom2/OutputType = "csv"
+s:Sc/DosePhantom2/IfOutputFileAlreadyExists = "Overwrite" 
+b:Sc/DosePhantom2/OutputToConsole = "TRUE"
+
+# Scorer untuk Phantom 3
+s:Sc/DosePhantom3/Quantity   = "DoseToMedium"
+s:Sc/DosePhantom3/Component  = "Phantom3"
+s:Sc/DosePhantom3/OutputFile = "Dose_Phantom3"
+s:Sc/DosePhantom3/OutputType = "csv"
+s:Sc/DosePhantom3/IfOutputFileAlreadyExists = "Overwrite" 
+b:Sc/DosePhantom3/OutputToConsole = "TRUE"
+
+# Scorer untuk Phantom 4
+s:Sc/DosePhantom4/Quantity   = "DoseToMedium"
+s:Sc/DosePhantom4/Component  = "Phantom4"
+s:Sc/DosePhantom4/OutputFile = "Dose_Phantom4"
+s:Sc/DosePhantom4/OutputType = "csv"
+s:Sc/DosePhantom4/IfOutputFileAlreadyExists = "Overwrite" 
+b:Sc/DosePhantom4/OutputToConsole = "TRUE"
+
+# Scorer untuk Phantom 5
+s:Sc/DosePhantom5/Quantity   = "DoseToMedium"
+s:Sc/DosePhantom5/Component  = "Phantom5"
+s:Sc/DosePhantom5/OutputFile = "Dose_Phantom5"
+s:Sc/DosePhantom5/OutputType = "csv"
+s:Sc/DosePhantom5/IfOutputFileAlreadyExists = "Overwrite" 
+b:Sc/DosePhantom5/OutputToConsole = "TRUE"
+
+# Pengaturan Eksekusi Otomatis
+b:Ts/PauseBeforeQuit = "False"
+b:Ts/UseQt           = "False"
+i:Ts/Seed            = 1
+
+# Pengaturan Multi-Threading
+i:Ts/NumberOfThreads = 10
