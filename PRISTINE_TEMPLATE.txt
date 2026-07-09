@@ -1,31 +1,32 @@
-# PRISTINE TEMPLATE BEBAS ERROR
+# PRISTINE TEMPLATE - VARIAN PROBEAM CONFIGURATION
 
 s:So/PBS/Type                     = "Beam"
 s:So/PBS/Component                = "BeamPosition"
 s:So/PBS/BeamParticle             = "proton"
 d:So/PBS/BeamEnergy               = ENERGIPLACEHOLDER MeV
 i:So/PBS/NumberOfHistoriesInRun   = 100000
-Ts/ShowHistoryCountAtInterval = 100
+i:Ts/ShowHistoryCountAtInterval   = 10000
 
-# Karakteristik geometri berkas pensil
+# Karakteristik geometri berkas pensil (Gaussian Spread)
 s:So/PBS/BeamPositionCutoffShape  = "Ellipse"
-s:So/PBS/BeamPositionDistribution = "Flat"
-d:So/PBS/BeamPositionCutoffX      = 2 mm
-d:So/PBS/BeamPositionCutoffY      = 2 mm
-d:So/PBS/BeamPositionSpreadX      = 3.0 mm
-d:So/PBS/BeamPositionSpreadY      = 3.0 mm
-s:So/PBS/BeamAngularDistribution  = "None"
+s:So/PBS/BeamPositionDistribution = "Gaussian"
+d:So/PBS/BeamPositionCutoffX      = 20 mm
+d:So/PBS/BeamPositionCutoffY      = 20 mm
+d:So/PBS/BeamPositionSpreadX      = POSSPREADPLACEHOLDER mm
+d:So/PBS/BeamPositionSpreadY      = POSSPREADPLACEHOLDER mm
+
+s:So/PBS/BeamAngularDistribution  = "Gaussian"
 d:So/PBS/BeamAngularCutoffX       = 90. deg
 d:So/PBS/BeamAngularCutoffY       = 90. deg
-d:So/PBS/BeamAngularSpreadX       = 0.425 mrad
-d:So/PBS/BeamAngularSpreadY       = 0.425 mrad
+d:So/PBS/BeamAngularSpreadX       = ANGSPREADPLACEHOLDER mrad
+d:So/PBS/BeamAngularSpreadY       = ANGSPREADPLACEHOLDER mrad
 
-# Geometri Beam
+# Geometri Beam (Waist ProBeam diposisikan di 42.1 cm sebelum isocenter)
 s:Ge/BeamPosition/Parent   = "World"
 s:Ge/BeamPosition/Type     = "Group"
 d:Ge/BeamPosition/TransX   = 0. mm
 d:Ge/BeamPosition/TransY   = 0. mm
-d:Ge/BeamPosition/TransZ   = -5 cm 
+d:Ge/BeamPosition/TransZ   = -42.1 cm 
 d:Ge/BeamPosition/RotX     = 0. deg
 d:Ge/BeamPosition/RotY     = 0. deg
 d:Ge/BeamPosition/RotZ     = 0. deg
@@ -37,7 +38,7 @@ d:Ge/World/HLZ       = 400 cm
 b:Ge/World/Invisible = "TRUE"
 s:Ge/World/Material  = "Air"
 
-# Phantom
+# Phantom PMMA
 s:Ge/Phantom/Parent   = "World"
 s:Ge/Phantom/Type     = "TsBox"
 s:Ge/Phantom/Material = "G4_PLEXIGLASS"
